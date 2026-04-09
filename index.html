@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta property="og:title" content="Jugos Naturales PRO">
+    <meta property="og:description" content="Bebidas frescas, saludables y llenas de energía.">
+    <meta property="og:image" content="imag/og.jpg">
+    <meta property="og:type" content="website">
+
+    <title>Jugos Naturales PRO</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary: #0F6111;
+            --secondary: #66D015;
+            --accent: #EDAE49;
+            --bg: #FFF8DC;
+            --white: #ffffff;
+            --dark: #333;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Playfair Display', serif;
+            background: var(--bg);
+            scroll-behavior: smooth;
+            color: var(--dark);
+            overflow-x: hidden;
+        }
+
+        /* --- NAVEGACIÓN Y MENÚ (Icono 1) --- */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 5%;
+            background: var(--white);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .logo {
+            font-weight: bold;
+            font-size: 1.2rem;
+            color: var(--primary);
+            text-transform: uppercase;
+        }
+
+        .menu-icon {
+            width: 35px;
+            height: 35px;
+            cursor: pointer;
+            stroke: var(--primary);
+            transition: 0.3s;
+        }
+
+        .nav-menu {
+            display: none;
+            flex: 1;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .nav-menu a {
+            color: var(--dark);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .nav-menu a:hover {
+            color: var(--secondary);
+        }
+
+        .menu-float {
+            position: fixed;
+            top: 25px;
+            right: 25px;
+            background-color: var(--primary);
+            color: white;
+            border-radius: 50px;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 2px 5px 15px rgba(0,0,0,0.3);
+            z-index: 2000;
+            transition: 0.3s;
+            cursor: pointer;
+            display: none;
+        }
+
+        .menu-float:hover { transform: scale(1.1); }
+
+        .menu-float svg {
+            width: 25px;
+            height: 25px;
+            stroke: white;
+        }
+
+        /* --- SIDEBAR (MENÚ DESPLEGABLE) --- */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            right: -300px; /* Oculto a la derecha */
+            width: 280px;
+            height: 100vh;
+            background: var(--white);
+            z-index: 3000;
+            transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            padding: 80px 30px;
+            box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+        }
+
+        .sidebar.active {
+            right: 0; /* Se desliza hacia adentro */
+        }
+
+        .sidebar a {
+            display: block;
+            color: var(--dark);
+            text-decoration: none;
+            font-size: 1.2rem;
+            margin-bottom: 25px;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        .sidebar a:hover {
+            color: var(--secondary);
+            padding-left: 10px;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 2rem;
+            cursor: pointer;
+            color: var(--primary);
+        }
+
+        /* Capa oscura de fondo al abrir menú */
+        .overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 2500;
+            display: none;
+        }
+
+        .overlay.active {
+            display: block;
+        }
+
+        /* --- WHATSAPP FLOTANTE (Icono 2) --- */
+        .wpp-float {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            background-color: #25d366;
+            color: white;
+            border-radius: 50px;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 2px 5px 15px rgba(0,0,0,0.3);
+            z-index: 2000;
+            transition: 0.3s;
+        }
+
+        .wpp-float:hover { transform: scale(1.1); background-color: #128c7e; }
+        .wpp-float svg { width: 35px; height: 35px; fill: white; }
+
+        /* --- HEADER --- */
+        header {
+            position: relative;
+            background: url('imag/banner.jpg') center/cover no-repeat;
+            color: white;
+            text-align: center;
+            padding: 120px 20px;
+        }
+
+        header::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: rgba(0,0,0,0.4);
+        }
+
+        header * { position: relative; }
+        header h1 { font-size: 45px; margin-bottom: 10px; }
+
+        .btn-main {
+            background: linear-gradient(45deg, var(--accent), #ffcc70);
+            border: none;
+            padding: 15px 30px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 30px;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: #333;
+            transition: 0.3s;
+            text-decoration: none;
+        }
+
+        /* --- CARDS Y GRID --- */
+        section { padding: 80px 20px; text-align: center; max-width: 1200px; margin: 0 auto; }
+        .servicios { display: flex; gap: 30px; justify-content: center; flex-wrap: wrap; }
+        .card { background: white; padding: 20px; border-radius: 20px; width: 280px; transition: 0.4s; }
+        .card:hover { transform: translateY(-10px); }
+        .card img { width: 100%; height: 200px; object-fit: cover; border-radius: 15px; }
+
+        .icon { width: 45px; height: 45px; fill: var(--primary); margin-bottom: 10px; }
+
+        /* Iconos 3, 4 y 5 en Grid */
+        .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-top: 20px; }
+        .info-item { padding: 30px; background: rgba(255,255,255,0.5); border-radius: 20px; }
+
+        footer { background: var(--primary); color: white; text-align: center; padding: 30px; }
+
+        /* --- VERSION MÓVIL --- */
+        @media (max-width: 768px) {
+            nav {
+                display: none;
+            }
+            .menu-float {
+                display: flex;
+            }
+            header {
+                padding: 80px 10px;
+            }
+            header h1 {
+                font-size: 30px;
+            }
+            section {
+                padding: 40px 10px;
+            }
+            .servicios {
+                flex-direction: column;
+                align-items: center;
+            }
+            .card {
+                width: 100%;
+                max-width: 300px;
+            }
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+            footer {
+                padding: 20px;
+            }
+        }
+
+        /* --- VERSION ESCRITORIO --- */
+        @media (min-width: 769px) {
+            .menu-icon {
+                display: none;
+            }
+            .nav-menu {
+                display: flex;
+            }
+            .sidebar {
+                display: none;
+            }
+            .overlay {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="overlay" id="overlay"></div>
+
+    <div class="sidebar" id="sidebar">
+        <div class="close-btn" id="closeMenu">&times;</div>
+        <a href="#">Inicio</a>
+        <a href="#productos">Productos</a>
+        <a href="#opiniones">Opiniones</a>
+        <a href="#contacto">Ubicación</a>
+        <a href="#">Horarios</a>
+        <a href="https://wa.me/tu-numero">Contacto Directo</a>
+    </div>
+
+    <nav>
+        <div class="logo">Natural Juice PRO</div>
+        <div class="nav-menu">
+            <a href="#">Inicio</a>
+            <a href="#productos">Productos</a>
+            <a href="#opiniones">Opiniones</a>
+            <a href="#contacto">Ubicación</a>
+            <a href="#">Horarios</a>
+            <a href="https://wa.me/tu-numero">Contacto Directo</a>
+        </div>
+    </nav>
+
+    <div class="menu-float" id="openMenuFloat">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+    </div>
+
+    <a href="https://wa.me/tu-numero" class="wpp-float" target="_blank">
+        <svg viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.025 3.128l-.694 2.54 2.6-.682c.81.442 1.725.676 2.836.677 3.182 0 5.769-2.587 5.77-5.766 0-3.18-2.587-5.763-5.769-5.763zm3.426 8.163c-.144.405-.833.78-1.144.823-.284.04-.645.06-1.846-.434-1.536-.63-2.527-2.185-2.603-2.287-.076-.101-.617-.82-.617-1.564 0-.745.39-.11.534-.26.143-.15.312-.18.416-.18s.21.002.3.002c.1.002.235-.038.368.283.144.35.49 1.196.533 1.282.043.085.072.185.014.302-.058.117-.087.19-.173.29-.086.1-.183.224-.26.3-.09.09-.184.187-.08.368.105.18.463.763.996 1.234.685.607 1.263.796 1.443.877.18.08.286.068.39-.053.106-.12.446-.52.565-.697.12-.177.24-.148.405-.087.165.06.1.522 1.04.522.94 0 1.054.1 1.15.155.097.054.16.26.015.666z"/></svg>
+    </a>
+
+    <header>
+        <h1>Jugos que Llenan tu Día</h1>
+        <p>Salud, energía y sabor 100% natural</p><br>
+        <a href="#" class="btn-main">Comprar ahora</a>
+    </header>
+
+    <section id="productos">
+        <h2>Nuestros Favoritos</h2>
+        <div class="servicios">
+            <div class="card">
+                <img src="imag/jugo.jpg" alt="Jugo natural">
+                <svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/></svg>
+                <h3>Pura Fruta</h3>
+                <p>Vitaminas al instante.</p>
+            </div>
+            <div class="card">
+                <img src="imag/batido.jpg" alt="Batido">
+                <svg class="icon" viewBox="0 0 24 24"><rect x="6" y="4" width="12" height="16" rx="3"/></svg>
+                <h3>Energía Verde</h3>
+                <p>El impulso diario.</p>
+            </div>
+            <div class="card">
+                <img src="imag/detox.jpg" alt="Detox">
+                <svg class="icon" viewBox="0 0 24 24"><path d="M12 2C8 7 6 10 6 13a6 6 0 0012 0c0-3-2-6-6-11z"/></svg>
+                <h3>Degustación natural</h3>
+                <p>Limpia tu cuerpo.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contacto">
+        <h2>Encuéntranos</h2>
+        <div class="info-grid">
+            <div class="info-item">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                <p>@FRESCO_VITAL</p>
+            </div>
+            <div class="info-item">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                <p>AV ferrocarril</p>
+            </div>
+            <div class="info-item">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                <p>5:00 AM - 12:00 PM</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="opiniones">
+        <h2>Opiniones de Nuestros Clientes</h2>
+        <div class="info-grid">
+            <div class="info-item">
+                <p>"¡Los jugos son increíbles! Me siento con más energía todos los días."</p>
+                <p><strong>- María González</strong></p>
+            </div>
+            <div class="info-item">
+                <p>"El detox me ayudó a sentirme renovado. ¡Recomiendo 100%!"</p>
+                <p><strong>- Carlos López</strong></p>
+            </div>
+            <div class="info-item">
+                <p>"Sabor natural y fresco. Mi favorito es el batido de energía."</p>
+                <p><strong>- Ana Ramírez</strong></p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2026 Jugos Naturales PRO - SENA</p>
+    </footer>
+
+    <script>
+        const openMenuFloat = document.getElementById('openMenuFloat');
+        const closeMenu = document.getElementById('closeMenu');
+        const sidebar = document.getElementById('sidebar');
+        const overlay = document.getElementById('overlay');
+
+        function toggleMenu() {
+            sidebar.classList.toggle('active');
+            overlay.classList.toggle('active');
+        }
+
+        if (openMenuFloat) {
+            openMenuFloat.addEventListener('click', toggleMenu);
+        }
+        closeMenu.addEventListener('click', toggleMenu);
+
+        // Cerrar menú al hacer clic en un enlace
+        document.querySelectorAll('.sidebar a').forEach(link => {
+            link.addEventListener('click', toggleMenu);
+        });
+    </script>
+
+</body>
+</html>
