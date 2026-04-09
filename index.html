@@ -60,10 +60,19 @@
         }
 
         .logo {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
             font-weight: bold;
             font-size: 1.2rem;
             color: var(--primary);
             text-transform: uppercase;
+        }
+
+        .logo img {
+            width: 32px;
+            height: 32px;
+            object-fit: contain;
         }
 
         .nav-menu {
@@ -254,7 +263,7 @@
     </div>
 
     <nav>
-        <div class="logo">Natural Juice PRO</div>
+        <div class="logo"><img src="favicon_io/favicon-32x32.png" alt="Fresco Vital icon">FRESCO VITAL</div>
         <div class="nav-menu">
             <a href="#">Inicio</a>
             <a href="#productos">Productos</a>
