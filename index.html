@@ -256,6 +256,46 @@
             border: none;
         }
 
+        .video-thumbnail {
+            width: 100%;
+            display: block;
+            border-radius: 15px;
+            transition: transform 0.3s ease;
+        }
+
+        .video-thumbnail:hover {
+            transform: scale(1.03);
+        }
+
+        .play-overlay {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
+            color: white;
+            background: rgba(0, 0, 0, 0.25);
+            transition: background 0.3s ease;
+        }
+
+        .play-overlay:hover {
+            background: rgba(0, 0, 0, 0.45);
+        }
+
+        .play-icon {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: var(--color-secondary);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2rem;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            margin-bottom: 10px;
+        }
+
         footer { background: var(--primary); color: white; text-align: center; padding: 30px; }
 
         /* --- RESPONSIVE --- */
@@ -339,13 +379,7 @@
                 <p>Limpia tu cuerpo.</p>
             </div>
         </div>
-    </section>
-
-    <section id="receta" style="background: #f0f0f040; border-radius: 50px;">
-        <h2>Nuestro Secreto de Energía</h2>
-        <p style="margin-bottom: 30px;">Aprende cómo preparamos nuestro batido estrella de piña y remolacha.</p>
-        
-        <div class="video-container">
+        <div class="video-container" style="margin: 40px auto 0; max-width: 700px; position: relative; height: auto; padding-bottom: 0;">
             <img src="https://i.ytimg.com/vi/tTjlc8XuYQA/maxresdefault.jpg" alt="Miniatura de Batido Energético" class="video-thumbnail">
             <a href="https://youtube.com/shorts/tTjlc8XuYQA?si=6upru2jFJv0avW8Z" target="_blank" class="play-overlay">
                 <div class="play-icon">▶</div>
@@ -353,6 +387,7 @@
             </a>
         </div>
     </section>
+
 
     <section id="contacto">
         <h2>Encuéntranos</h2>
