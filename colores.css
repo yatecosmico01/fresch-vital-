@@ -1,0 +1,16 @@
+:root {
+  /* Color principal (Verde oscuro) */
+  --color-primary: #0F6111;
+
+  /* Color secundario (Verde lima) */
+  --color-secondary: #66D015;
+
+  /* Color de acento (Azul) */
+  --color-accent: #118CF7;
+
+  /* Color de advertencia o estado (Naranja) */
+  --color-warning: #EDAE49;
+
+  /* Color de resalte (Amarillo) */
+  --color-highlight: #E9DD34;
+}

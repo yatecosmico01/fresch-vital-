@@ -26,12 +26,15 @@
     <link rel="icon" type="image/png" sizes="16x16" href="favicon_io/favicon-16x16.png">
     <link rel="apple-touch-icon" sizes="180x180" href="favicon_io/apple-touch-icon.png">
     <link rel="manifest" href="favicon_io/site.webmanifest">
+    <link rel="stylesheet" href="colores.css">
 
     <style>
         :root {
-            --primary: #0F6111;
-            --secondary: #66D015;
-            --accent: #EDAE49;
+            --color-primary: #0F6111;
+            --color-secondary: #66D015;
+            --color-accent: #118CF7;
+            --color-warning: #EDAE49;
+            --color-highlight: #E9DD34;
             --bg: #FFF8DC;
             --white: #ffffff;
             --dark: #333;
@@ -231,6 +234,28 @@
         .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-top: 20px; }
         .info-item { padding: 30px; background: rgba(255,255,255,0.5); border-radius: 20px; }
 
+        /* --- VIDEO YOUTUBE --- */
+        .video-container {
+            position: relative;
+            width: 100%;
+            max-width: 700px;
+            margin: 0 auto;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
         footer { background: var(--primary); color: white; text-align: center; padding: 30px; }
 
         /* --- RESPONSIVE --- */
@@ -313,6 +338,19 @@
                 <h3>Degustación natural</h3>
                 <p>Limpia tu cuerpo.</p>
             </div>
+        </div>
+    </section>
+
+    <section id="receta" style="background: #f0f0f040; border-radius: 50px;">
+        <h2>Nuestro Secreto de Energía</h2>
+        <p style="margin-bottom: 30px;">Aprende cómo preparamos nuestro batido estrella de piña y remolacha.</p>
+        
+        <div class="video-container">
+            <img src="https://i.ytimg.com/vi/tTjlc8XuYQA/maxresdefault.jpg" alt="Miniatura de Batido Energético" class="video-thumbnail">
+            <a href="https://youtube.com/shorts/tTjlc8XuYQA?si=6upru2jFJv0avW8Z" target="_blank" class="play-overlay">
+                <div class="play-icon">▶</div>
+                <span style="font-weight: bold; text-transform: uppercase; letter-spacing: 1px;">Ver Video Receta</span>
+            </a>
         </div>
     </section>
 
